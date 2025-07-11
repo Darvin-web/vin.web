@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      color: black;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .gender-label {
+      margin-right: 10px;
+    }
+
+    hr {
+      margin: 20px 0;
+    }
+
+    .submit-button {
+      width: 100%;
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #8e24aa;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="form-container">
+    <h2>SIGNUP FORM</h2>
+
+    <form onsubmit="event.preventDefault(); signup();">
+      <label>First Name:</label>
+      <input type="text" required>
+
+      <label>Middle Name:</label>
+      <input type="text">
+
+      <label>Last Name:</label>
+      <input type="text" required>
+
+      <label>Email Address:</label>
+      <input type="email" id="username" required>
+
+      <label>Password:</label>
+      <input type="password" id="password" required>
+
+      <label>Birthday:</label>
+      <input type="date">
+
+      <label>Weight:</label>
+      <input type="number">
+
+      <hr>
+
+      <label>Gender:</label>
+      <input type="radio" name="gender" value="Male" required><span class="gender-label">Male</span>
+      <input type="radio" name="gender" value="Female"><span class="gender-label">Female</span>
+      <input type="radio" name="gender" value="Others"><span class="gender-label">Others</span>
+
+      <br><br>
+
+      <button type="submit" class="submit-button">Submit</button>
+
+      <p id="message"></p>
+    </form>
+  </div>
+
+  <script>
+    function signup() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if (user && pass) {
+        localStorage.setItem("savedUsername", user);
+        localStorage.setItem("savedPassword", pass);
+        document.getElementById("message").style.color = "green";
+        document.getElementById("message").textContent = "Account created successfully!";
+      } else {
+        document.getElementById("message").style.color = "red";
+        document.getElementById("message").textContent = "Please fill in all fields.";
+      }
+      window.location.href = "index.html"
+    }
+  </script>
+
+</body>
+</html>

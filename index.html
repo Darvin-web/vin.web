@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      background-color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      width: 25%;
+      padding: 20px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .field input {
+      height: 35px;
+      width: 88%;
+      padding: 6px 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 15px;
+    }
+
+    .nyawk-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .Login-btn, .clear-btn {
+      height: 35px;
+      width: 120px;
+      padding: 6px 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .Login-btn {
+      background-color: blue;
+      color: white;
+    }
+
+    .clear-btn {
+      background-color: orange;
+      color: white;
+    }
+
+    .Login-btn:hover,
+    .clear-btn:hover {
+      opacity: 0.8;
+    }
+
+    .reset-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      color: blue;
+      border: none;
+      margin: 10px auto;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .reset-btn:hover {
+      text-decoration: underline;
+    }
+
+    .signup-link {
+      text-align: center;
+      display: block;
+      margin-top: 5px;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    #error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <form onsubmit="event.preventDefault(); login();">
+      <div class="field">
+        <input id="username" type="text" placeholder="Email or Phone Number" required>
+      </div>
+
+      <div class="field">
+        <input id="password" type="password" placeholder="Password" required>
+      </div>
+
+      <div class="nyawk-btn">
+        <button type="submit" class="Login-btn">Login</button>
+        <button type="reset" class="clear-btn">Clear</button>
+      </div>
+
+      <p id="error"></p>
+    </form>
+
+    <form action="Forgot Password.html">
+      <button type="submit" class="btn reset-btn">Forgot Password</button>
+    </form>
+
+    <p class="signup-link">
+      You don't have any account? <a href="sign up.html">Sign up</a>
+    </p>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      const savedUser = localStorage.getItem("savedUsername");
+      const savedPass = localStorage.getItem("savedPassword");
+
+      if (!savedUser || !savedPass) {
+        document.getElementById("error").textContent = "You don't have an account yet. Please sign up first.";
+        return;
+      }
+
+      if (user === savedUser && pass === savedPass) {
+        alert("Login successful!");
+        window.location.href = "home.html"; // redirect to your home page
+      } else {
+        document.getElementById("error").textContent = "Invalid username or password!";
+      }
+    }
+  </script>
+
+</body>
+</html>
